@@ -1,0 +1,117 @@
+View all databases
+
+
+create a new or switch to database
+use dbname
+
+
+View current databases:
+db
+
+Delete databases:
+db.dropDatabase()
+
+
+MongoDb commands for collections:
+show collections
+Show collections
+
+
+Create a collection name 'comments':
+db.createCollection('comments')
+
+
+Drop a collection 'content':
+db.content.drop()
+
+
+MongoDb command for Rows:
+show all rows in mongodb:
+db.comments.find()
+
+
+Insert one Row:
+db.comments.insert({
+    'name' : 'Abhi',
+    'languages' : 'Javascript',
+    'member_since' : '5'
+})
+
+
+Insert Many Rows:
+db.comments.insertMany([{
+    'name' : 'Abhi',
+    'languages' : 'Javascript',
+    'member_since' : 5
+    },
+
+  {
+     'name' : 'Michael',
+    'languages' : 'Python',
+    'member_since' : 6 
+  },
+
+  {
+     'name' : 'Itachi',
+    'languages' : 'PHP',
+    'member_since' : 4 
+  }])
+
+
+  Show all Rows in a collections(Prettified):
+  db.comments.find().pretty()
+
+
+  Search in the MongoDb database
+  db.comments.find({languages: 'PHP',name : 'Itachi'})
+
+
+
+  Limit number of rows in output:
+  db.comments.find().pretty().limit(3)
+
+  Count the number of Rows in the output
+  db.comments.find().count()
+
+  Sort find in Mongodb:
+  db.comments.find().sort({member_since:1}).pretty()
+
+
+  Find the first row matching the object:
+  db.comments.findOne({name:'Abhi'})
+
+
+  Update a Row:
+  db.comments.update({name:'Abhi'},{
+      'name' : 'Abhi',
+      'languages' : 'Javascript',
+      'member_since' : 34
+  })
+If it din't match we can upsert/insert in our database:
+ db.comments.update({name:'Trevor'},{
+      'name' : 'Abhi',
+      'languages' : 'Javascript',
+      'member_since' : 34
+  },{upsert : true})
+
+
+MongoDb increment Operator:
+db.comments.update({name:'Itachi'},
+{$inc:{
+    member_since : 5
+
+}})
+
+MongoDb Rename Operator:
+db.comments.update({name:'Itachi'},
+{$rename:{
+    member_since : 'member'
+
+}})
+
+Delete Row:
+db.comments.remove({name:'Abhi'})
+
+Find less than:
+db.comments.find({member_since: {$lt : 89}})
+
